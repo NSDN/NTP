@@ -1,0 +1,67 @@
+﻿<controls:MetroWindow x:Class="NTP.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:local="clr-namespace:NTP"
+        mc:Ignorable="d"
+        Title="NTP DEBUG" Height="300" Width="300" ShowIconOnTitleBar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Orange.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+    
+    <controls:MetroWindow.LeftWindowCommands>
+        <controls:WindowCommands>
+            <Button x:Name="btnLogo">
+                <iconPacks:PackIconModern Kind="TrainTrack" />
+            </Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.LeftWindowCommands>
+
+    <Grid>
+        <TextBox x:Name="BoxToken" Margin="10,11,0,0" TextWrapping="Wrap"
+                 controls:TextBoxHelper.Watermark="token" IsReadOnly="True"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" Height="26"/>
+        <Button x:Name="BtnUpdate" Content="update" Margin="204,10,0,0" HorizontalAlignment="Left" Width="80" Height="28" VerticalAlignment="Top" Click="BtnUpdate_Click"/>
+        <TabControl Margin="10,43,10,10">
+            <TabItem Header="from">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="BoxFromID" Margin="10,10,10,0" TextWrapping="Wrap" 
+                             controls:TextBoxHelper.Watermark="id" VerticalAlignment="Top"/>
+                    <TextBox x:Name="BoxFromKey" Margin="10,41,10,0" TextWrapping="Wrap" 
+                             controls:TextBoxHelper.Watermark="key" VerticalAlignment="Top"/>
+                    <controls:ToggleSwitch x:Name="SwitchFromState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device open" OffLabel="device off" IsEnabled="False" />
+                    <Button x:Name="BtnFromRequest" Content="request" Margin="178,76,10,0" Height="28" VerticalAlignment="Top" Click="BtnFromRequest_Click"/>
+                    <TextBox x:Name="BoxFromResult" Margin="10,112,10,10" TextWrapping="Wrap" 
+                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="to">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="BoxToID" Margin="10,10,10,0" TextWrapping="Wrap" 
+                             controls:TextBoxHelper.Watermark="id" VerticalAlignment="Top"/>
+                    <TextBox x:Name="BoxToKey" Margin="10,41,10,0" TextWrapping="Wrap" 
+                             controls:TextBoxHelper.Watermark="key" VerticalAlignment="Top"/>
+                    <controls:ToggleSwitch x:Name="SwitchToState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device open" OffLabel="device off" />
+                    <Button x:Name="BtnToRequest" Content="request" Margin="178,76,10,0" Height="28" VerticalAlignment="Top" Click="BtnToRequest_Click"/>
+                    <TextBox x:Name="BoxToResult" Margin="10,112,10,10" TextWrapping="Wrap" 
+                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="util">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="BoxPing" Margin="10,11,10,43" TextWrapping="Wrap"
+                 controls:TextBoxHelper.Watermark="result" IsReadOnly="True"/>
+                    <Button x:Name="BtnPing" Content="ping" Margin="0,0,10,10" Click="BtnPing_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</controls:MetroWindow>

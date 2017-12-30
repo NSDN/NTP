@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.network.nyasamatelecom.nsdn.club/" targetNamespace="http://webservice.network.nyasamatelecom.nsdn.club/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="fromDevice" type="tns:fromDevice" />
+  <xs:element name="fromDeviceResponse" type="tns:fromDeviceResponse" />
+  <xs:element name="ping" type="tns:ping" />
+  <xs:element name="pingResponse" type="tns:pingResponse" />
+  <xs:element name="requestToken" type="tns:requestToken" />
+  <xs:element name="requestTokenResponse" type="tns:requestTokenResponse" />
+  <xs:element name="toDevice" type="tns:toDevice" />
+  <xs:element name="toDeviceExt" type="tns:toDeviceExt" />
+  <xs:element name="toDeviceExtResponse" type="tns:toDeviceExtResponse" />
+  <xs:element name="toDeviceResponse" type="tns:toDeviceResponse" />
+  <xs:complexType name="toDeviceExt">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="key" type="xs:string" />
+      <xs:element minOccurs="0" name="data" type="xs:anyType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="toDeviceExtResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="toDeviceExt" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestToken">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="requestTokenResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="requestToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="toDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="key" type="xs:string" />
+      <xs:element name="state" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="toDeviceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="toDevice" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fromDevice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="key" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="fromDeviceResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fromDevice" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ping">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="token" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="pingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ping" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
