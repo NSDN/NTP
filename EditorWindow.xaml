@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         xmlns:local="clr-namespace:NTP"
         mc:Ignorable="d"
         Title="NTP EDITOR" Height="360" Width="640" ShowIconOnTitleBar="False" WindowStartupLocation="CenterScreen">
@@ -26,6 +27,8 @@
     </controls:MetroWindow.LeftWindowCommands>
 
     <Grid>
-        
+        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60"
+                               OpenGLDraw="GLControl_OpenGLDraw" OpenGLInitialized="GLControl_OpenGLInitialized"
+                               MouseWheel="GLControl_MouseWheel" MouseMove="GLControl_MouseMove"/>
     </Grid>
 </controls:MetroWindow>

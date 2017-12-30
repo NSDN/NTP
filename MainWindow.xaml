@@ -1,11 +1,12 @@
-﻿<controls:MetroWindow x:Class="NTP.MainWindow"
+﻿<controls:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:local="clr-namespace:NTP"
+        xmlns:local="clr-namespace:NTP" x:Class="NTP.MainWindow"
         mc:Ignorable="d"
         LeftWindowCommandsOverlayBehavior="Always"
         Title="NTP MAIN" Height="360" Width="640" ShowIconOnTitleBar="False" WindowStartupLocation="CenterScreen">
@@ -17,7 +18,7 @@
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
-    
+
     <controls:MetroWindow.RightWindowCommands>
         <controls:WindowCommands>
             <Button x:Name="BtnOpen" Click="BtnOpen_Click">
@@ -34,14 +35,14 @@
 
     <controls:MetroWindow.Flyouts>
         <controls:FlyoutsControl>
-            <controls:Flyout x:Name="InfoPanel" Header="Info" Position="Left" Width="200" Theme="Accent">
-                
-            </controls:Flyout>
+            <controls:Flyout x:Name="InfoPanel" Header="Info" Position="Left" Width="200" Theme="Accent"/>
         </controls:FlyoutsControl>
     </controls:MetroWindow.Flyouts>
 
     <Grid>
-        
+        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60"
+                               OpenGLDraw="GLControl_OpenGLDraw" OpenGLInitialized="GLControl_OpenGLInitialized"
+                               MouseWheel="GLControl_MouseWheel" MouseMove="GLControl_MouseMove"/>
     </Grid>
-    
+
 </controls:MetroWindow>
