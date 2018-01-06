@@ -8,26 +8,35 @@
         xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"
         xmlns:local="clr-namespace:NTP"
         mc:Ignorable="d"
+        LeftWindowCommandsOverlayBehavior="Always"
         Title="NTP EDITOR" Height="360" Width="640" ShowIconOnTitleBar="False" WindowStartupLocation="CenterScreen">
 
     <controls:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Amber.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </controls:MetroWindow.Resources>
 
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
-            <Button x:Name="btnLogo">
+            <Button x:Name="BtnLogo" Click="BtnLogo_Click">
                 <iconPacks:PackIconModern Kind="TrainTrack" />
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
 
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout x:Name="ToolPanel" Header="Tool" Position="Top" Height="128" Theme="Accent">
+                
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+
     <Grid>
-        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60"
+        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60" Resized="GLControl_Resized"
                                OpenGLDraw="GLControl_OpenGLDraw" OpenGLInitialized="GLControl_OpenGLInitialized"
                                MouseWheel="GLControl_MouseWheel" MouseMove="GLControl_MouseMove"/>
     </Grid>

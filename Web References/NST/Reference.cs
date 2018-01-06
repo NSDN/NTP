@@ -39,9 +39,9 @@ namespace NTP.NST {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(toDeviceExt))]
     public partial class TelecomImplService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback toDeviceOperationCompleted;
-        
         private System.Threading.SendOrPostCallback fromDeviceOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback toDeviceOperationCompleted;
         
         private System.Threading.SendOrPostCallback toDeviceExtOperationCompleted;
         
@@ -88,10 +88,10 @@ namespace NTP.NST {
         }
         
         /// <remarks/>
-        public event toDeviceCompletedEventHandler toDeviceCompleted;
+        public event fromDeviceCompletedEventHandler fromDeviceCompleted;
         
         /// <remarks/>
-        public event fromDeviceCompletedEventHandler fromDeviceCompleted;
+        public event toDeviceCompletedEventHandler toDeviceCompleted;
         
         /// <remarks/>
         public event toDeviceExtCompletedEventHandler toDeviceExtCompleted;
@@ -101,6 +101,40 @@ namespace NTP.NST {
         
         /// <remarks/>
         public event pingCompletedEventHandler pingCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", ResponseNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("fromDevice", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string fromDevice([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string token, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string id, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string key) {
+            object[] results = this.Invoke("fromDevice", new object[] {
+                        token,
+                        id,
+                        key});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void fromDeviceAsync(string token, string id, string key) {
+            this.fromDeviceAsync(token, id, key, null);
+        }
+        
+        /// <remarks/>
+        public void fromDeviceAsync(string token, string id, string key, object userState) {
+            if ((this.fromDeviceOperationCompleted == null)) {
+                this.fromDeviceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfromDeviceOperationCompleted);
+            }
+            this.InvokeAsync("fromDevice", new object[] {
+                        token,
+                        id,
+                        key}, this.fromDeviceOperationCompleted, userState);
+        }
+        
+        private void OnfromDeviceOperationCompleted(object arg) {
+            if ((this.fromDeviceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.fromDeviceCompleted(this, new fromDeviceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", ResponseNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -135,40 +169,6 @@ namespace NTP.NST {
             if ((this.toDeviceCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.toDeviceCompleted(this, new toDeviceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("", RequestNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", ResponseNamespace="http://webservice.network.nyasamatelecom.nsdn.club/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        [return: System.Xml.Serialization.XmlElementAttribute("fromDevice", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string fromDevice([System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string token, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string id, [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)] string key) {
-            object[] results = this.Invoke("fromDevice", new object[] {
-                        token,
-                        id,
-                        key});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void fromDeviceAsync(string token, string id, string key) {
-            this.fromDeviceAsync(token, id, key, null);
-        }
-        
-        /// <remarks/>
-        public void fromDeviceAsync(string token, string id, string key, object userState) {
-            if ((this.fromDeviceOperationCompleted == null)) {
-                this.fromDeviceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnfromDeviceOperationCompleted);
-            }
-            this.InvokeAsync("fromDevice", new object[] {
-                        token,
-                        id,
-                        key}, this.fromDeviceOperationCompleted, userState);
-        }
-        
-        private void OnfromDeviceOperationCompleted(object arg) {
-            if ((this.fromDeviceCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.fromDeviceCompleted(this, new fromDeviceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -286,7 +286,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -308,7 +308,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -330,7 +330,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -352,7 +352,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -400,7 +400,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -422,7 +422,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -483,7 +483,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -505,7 +505,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -514,7 +514,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -536,7 +536,7 @@ namespace NTP.NST {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2556.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -598,17 +598,17 @@ namespace NTP.NST {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void toDeviceCompletedEventHandler(object sender, toDeviceCompletedEventArgs e);
+    public delegate void fromDeviceCompletedEventHandler(object sender, fromDeviceCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class toDeviceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class fromDeviceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal toDeviceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal fromDeviceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -624,17 +624,17 @@ namespace NTP.NST {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
-    public delegate void fromDeviceCompletedEventHandler(object sender, fromDeviceCompletedEventArgs e);
+    public delegate void toDeviceCompletedEventHandler(object sender, toDeviceCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class fromDeviceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class toDeviceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal fromDeviceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal toDeviceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

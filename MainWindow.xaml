@@ -11,6 +11,14 @@
         LeftWindowCommandsOverlayBehavior="Always"
         Title="NTP MAIN" Height="360" Width="640" ShowIconOnTitleBar="False" WindowStartupLocation="CenterScreen">
 
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Teal.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+    
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button x:Name="BtnLogo" Click="BtnLogo_Click">
@@ -40,7 +48,7 @@
     </controls:MetroWindow.Flyouts>
 
     <Grid>
-        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60"
+        <sharpGL:OpenGLControl x:Name="GLControl" FrameRate="60" Resized="GLControl_Resized"
                                OpenGLDraw="GLControl_OpenGLDraw" OpenGLInitialized="GLControl_OpenGLInitialized"
                                MouseWheel="GLControl_MouseWheel" MouseMove="GLControl_MouseMove"/>
     </Grid>

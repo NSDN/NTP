@@ -45,6 +45,8 @@ namespace NTP
 
         private void BtnFromRequest_Click(object sender, RoutedEventArgs e)
         {
+            BoxFromResult.Text = "";
+
             if (BoxToken.Text.Length == 0)
             {
                 this.ShowMessageAsync("ERROR", "token is null");
@@ -68,6 +70,8 @@ namespace NTP
 
         private void BtnToRequest_Click(object sender, RoutedEventArgs e)
         {
+            BoxToResult.Text = "";
+            
             if (BoxToken.Text.Length == 0)
             {
                 this.ShowMessageAsync("ERROR", "token is null");
@@ -88,6 +92,8 @@ namespace NTP
 
         private void BtnPing_Click(object sender, RoutedEventArgs e)
         {
+            BoxPing.Text = "";
+
             if (BoxToken.Text.Length == 0)
             {
                 this.ShowMessageAsync("ERROR", "token is null");

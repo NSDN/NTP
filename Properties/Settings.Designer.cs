@@ -26,7 +26,7 @@ namespace NTP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:32/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://123.206.196.190:32/api")]
         public string NTP_NST_TelecomImplService {
             get {
                 return ((string)(this["NTP_NST_TelecomImplService"]));

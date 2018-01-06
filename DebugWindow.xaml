@@ -26,7 +26,7 @@
     </controls:MetroWindow.LeftWindowCommands>
 
     <Grid>
-        <TextBox x:Name="BoxToken" Margin="10,11,0,0" TextWrapping="Wrap"
+        <TextBox x:Name="BoxToken" Margin="10,11,0,0"
                  controls:TextBoxHelper.Watermark="token" IsReadOnly="True"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="189" Height="26"/>
         <Button x:Name="BtnUpdate" Content="update" Margin="204,10,0,0" HorizontalAlignment="Left" Width="80" Height="28" VerticalAlignment="Top" Click="BtnUpdate_Click"/>
         <TabControl Margin="10,43,10,10">
@@ -36,10 +36,10 @@
                              controls:TextBoxHelper.Watermark="id" VerticalAlignment="Top"/>
                     <TextBox x:Name="BoxFromKey" Margin="10,41,10,0" TextWrapping="Wrap" 
                              controls:TextBoxHelper.Watermark="key" VerticalAlignment="Top"/>
-                    <controls:ToggleSwitch x:Name="SwitchFromState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device open" OffLabel="device off" IsEnabled="False" />
+                    <controls:ToggleSwitch x:Name="SwitchFromState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device on" OffLabel="device off" IsEnabled="False" />
                     <Button x:Name="BtnFromRequest" Content="request" Margin="178,76,10,0" Height="28" VerticalAlignment="Top" Click="BtnFromRequest_Click"/>
                     <TextBox x:Name="BoxFromResult" Margin="10,112,10,10" TextWrapping="Wrap" 
-                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result"/>
+                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="to">
@@ -48,16 +48,16 @@
                              controls:TextBoxHelper.Watermark="id" VerticalAlignment="Top"/>
                     <TextBox x:Name="BoxToKey" Margin="10,41,10,0" TextWrapping="Wrap" 
                              controls:TextBoxHelper.Watermark="key" VerticalAlignment="Top"/>
-                    <controls:ToggleSwitch x:Name="SwitchToState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device open" OffLabel="device off" />
+                    <controls:ToggleSwitch x:Name="SwitchToState" Margin="10,72,95,0" VerticalAlignment="Top" OnLabel="device on" OffLabel="device off" />
                     <Button x:Name="BtnToRequest" Content="request" Margin="178,76,10,0" Height="28" VerticalAlignment="Top" Click="BtnToRequest_Click"/>
                     <TextBox x:Name="BoxToResult" Margin="10,112,10,10" TextWrapping="Wrap" 
-                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result"/>
+                             IsReadOnly="True" controls:TextBoxHelper.Watermark="result" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </TabItem>
             <TabItem Header="util">
                 <Grid Background="#FFE5E5E5">
                     <TextBox x:Name="BoxPing" Margin="10,11,10,43" TextWrapping="Wrap"
-                 controls:TextBoxHelper.Watermark="result" IsReadOnly="True"/>
+                            controls:TextBoxHelper.Watermark="result" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                     <Button x:Name="BtnPing" Content="ping" Margin="0,0,10,10" Click="BtnPing_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                 </Grid>
             </TabItem>

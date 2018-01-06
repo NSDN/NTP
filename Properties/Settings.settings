@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="NTP_NST_TelecomImplService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:32/api</Value>
+      <Value Profile="(Default)">http://123.206.196.190:32/api</Value>
     </Setting>
   </Settings>
 </SettingsFile>

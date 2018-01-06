@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using MahApps.Metro.Controls;
 using SharpGL;
 using SharpGL.Enumerations;
+using NTP.Core;
 
 namespace NTP
 {
@@ -16,8 +17,14 @@ namespace NTP
     {
 
         OpenGL gl;
-        double x = 0, y = 0, z = -2.5;
+
+        #region "Control"
+        double x = 0, y = 0, z = 5;
         Point prev, now; bool state = false;
+        #endregion
+
+        Renderer renderer;
+        Map map;
 
         public MainWindow()
         {
@@ -46,27 +53,31 @@ namespace NTP
 
         private void GLControl_OpenGLDraw(object sender, SharpGL.SceneGraph.OpenGLEventArgs args)
         {
-            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-
             gl.LoadIdentity();
-            gl.Translate(x, y, z);
+            gl.Translate(GLControl.ActualWidth / 2.0, GLControl.ActualHeight / 2.0, 0);
+            gl.Translate(x, y, 0);
+            gl.Scale(z, z, 1);
 
-            gl.Color(0.0F, 1.0F, 0.0F);
-            gl.Begin(BeginMode.LineLoop);
-            gl.Vertex(-1.0F, -1.0F); gl.Vertex(1.0F, -1.0F);
-            gl.Vertex(1.0F, 1.0F); gl.Vertex(-1.0F, 1.0F);
-            gl.End();
+            map.core.OnRender();
+        }
 
-            gl.DrawText(4, 4, 1.0F, 1.0F, 1.0F, "Consolas", 16.0F, String.Format("({0:F},{1:F},{2:F})", x, y, z));
-
-            gl.Flush();
-
+        private void GLControl_Resized(object sender, SharpGL.SceneGraph.OpenGLEventArgs args)
+        {
+            gl.MatrixMode(MatrixMode.Projection);
+            gl.LoadIdentity();
+            gl.Ortho2D(0, GLControl.ActualWidth, 0, GLControl.ActualHeight);
+            gl.MatrixMode(MatrixMode.Modelview);
         }
 
         private void GLControl_OpenGLInitialized(object sender, SharpGL.SceneGraph.OpenGLEventArgs args)
         {
             gl = GLControl.OpenGL;
             gl.ClearColor(0.0F, 0.0F, 0.0F, 1.0F);
+
+            renderer = new Renderer(gl);
+            map = new Map(renderer);
+            map.core.Add(new Devices.Rail());
+            map.core.Add(new Devices.Rail1(GLControl, () => { return (float)z; }));
         }
 
         private void GLControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -76,9 +87,8 @@ namespace NTP
                 now = e.GetPosition(GLControl);
                 if (state)
                 {
-                    double v = 200.0 / Math.Abs(z);
-                    x += (now.X - prev.X) / v;
-                    y += -(now.Y - prev.Y) / v;
+                    x += (now.X - prev.X) * 2.0;
+                    y += -(now.Y - prev.Y) * 2.0;
                     state = false;
                 }
                 else
@@ -92,8 +102,16 @@ namespace NTP
 
         private void GLControl_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
         {
-            z += Math.Pow(e.Delta / 40.0 / 10.0, 3);
-            if (z > -1) z = -1;
+            double dz = e.Delta / 120.0;
+            if (z < 5) z += dz;
+            else if (z == 5)
+            {
+                if (dz > 0) z += dz * 5;
+                else z += dz;
+            }
+            else z += dz * 5;
+            if (z < 1) z = 1;
+            if (z > 50) z = 50;
         }
     }
 }
